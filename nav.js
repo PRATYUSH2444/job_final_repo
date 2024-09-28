@@ -30,3 +30,37 @@ function setTheme() {
 setTheme();
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setTheme);
+document.querySelector('.scroll-to-about').addEventListener('click', function(e) {
+            e.preventDefault();
+            const aboutSection = document.querySelector('#about1');
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.querySelector('.scroll-to-contact').addEventListener('click', function(e) {
+            e.preventDefault();
+            const contactSection = document.querySelector('#contact1');
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            gsap.to(this, {
+                opacity: 0.5,
+                duration: 0.3,
+                onComplete: () => {
+                    // Show success message
+                    this.innerHTML = '<h3>Thank you for your message!</h3>';
+                    gsap.to(this, {opacity: 1, duration: 0.3});
+                }
+            });
+        });
+
+        // New script to handle loader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loader = document.getElementById('loader');
+                loader.style.display = 'none';
+            }, 2000); // Hide loader after 2 seconds
+        });
